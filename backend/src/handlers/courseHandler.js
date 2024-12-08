@@ -1,16 +1,30 @@
-const courseController = require('../controllers/courseController');
+const courseController = require("../controllers/courseController");
 
 // Crear un curso
-const createCourseHandler = async (req, res) => {
+const createCourseHandler = async (req, res, next) => {
   try {
-    const { name, description, category, subcategory, duration, price, instructor, startDate, endDate, status, level, image, video } = req.body;
+    const {
+      name,
+      description,
+      category,
+      subcategory,
+      duration,
+      price,
+      instructor,
+      startDate,
+      endDate,
+      status,
+      level,
+      image,
+      video,
+    } = req.body;
 
     // Validación básica (puedes añadir más reglas si es necesario)
     if (!name || !description || !category || !instructor) {
-        const error = new Error('Faltan campos obligatorios.');
-        res.status(400); // Configura el código de estado
-        return next(error); // Pasa el error al middleware
-      }
+      const error = new Error("Faltan campos obligatorios.");
+      res.status(400); // Configura el código de estado
+      return next(error); // Pasa el error al middleware
+    }
 
     // Enviar los datos al controlador
     const newCourse = await courseController.createCourse({
@@ -26,7 +40,7 @@ const createCourseHandler = async (req, res) => {
       status,
       level,
       image,
-      video
+      video,
     });
 
     res.status(201).json(newCourse);
@@ -52,7 +66,7 @@ const getCourseByIdHandler = async (req, res) => {
     const course = await courseController.getCourseById(id);
 
     if (!course) {
-      return res.status(404).json({ error: 'Curso no encontrado.' });
+      return res.status(404).json({ error: "Curso no encontrado." });
     }
 
     res.status(200).json(course);
@@ -70,7 +84,7 @@ const updateCourseHandler = async (req, res) => {
     const updatedCourse = await courseController.updateCourse(id, updatedData);
 
     if (!updatedCourse) {
-      return res.status(404).json({ error: 'Curso no encontrado.' });
+      return res.status(404).json({ error: "Curso no encontrado." });
     }
 
     res.status(200).json(updatedCourse);
@@ -86,10 +100,10 @@ const deleteCourseHandler = async (req, res) => {
     const deletedCourse = await courseController.deleteCourse(id);
 
     if (!deletedCourse) {
-      return res.status(404).json({ error: 'Curso no encontrado.' });
+      return res.status(404).json({ error: "Curso no encontrado." });
     }
 
-    res.status(200).json({ message: 'Curso eliminado correctamente.' });
+    res.status(200).json({ message: "Curso eliminado correctamente." });
   } catch (error) {
     next(error);
   }
@@ -100,5 +114,5 @@ module.exports = {
   getCoursesHandler,
   getCourseByIdHandler,
   updateCourseHandler,
-  deleteCourseHandler
+  deleteCourseHandler,
 };

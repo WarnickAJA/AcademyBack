@@ -1,13 +1,13 @@
 // Importación de paquetes
-const express = require('express');
-const morgan = require('morgan');
-const connectDB = require('./config/db');
-const errorHandler = require('./middlewares/errorMiddleware');
+const express = require("express");
+const morgan = require("morgan");
+const connectDB = require("./config/db");
+const errorHandler = require("./middlewares/errorMiddleware");
+const cors = require("cors");
 
 // Importación de rutas
-const courseRoutes = require('./routes/courseRoutes');
-const instructorRoutes = require('./routes/instructorRoutes');
-
+const courseRoutes = require("./routes/courseRoutes");
+const instructorRoutes = require("./routes/instructorRoutes");
 
 // Conectar a la base de datos
 connectDB();
@@ -15,21 +15,23 @@ connectDB();
 // Inicialización de la app
 const app = express();
 
+// Configuración de CORS
+app.use(cors());
+
 // Middlewares
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev')); // Logging solo en desarrollo
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev")); // Logging solo en desarrollo
 }
 
 app.use(express.json()); // Para el parseo de JSON en las solicitudes
 
 // Rutas
-app.use('/api/courses', courseRoutes);
-app.use('/api/instructors', instructorRoutes);
-       
+app.use("/api/courses", courseRoutes);
+app.use("/api/instructors", instructorRoutes);
 
 // Página de inicio por defecto
-app.get('/', (req, res) => {
-  res.send('API is running...');
+app.get("/", (req, res) => {
+  res.send("API is running...");
 });
 
 // Middleware para manejar errores

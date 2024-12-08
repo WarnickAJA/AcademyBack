@@ -50,7 +50,7 @@ const createCourseHandler = async (req, res, next) => {
 };
 
 // Obtener todos los cursos
-const getCoursesHandler = async (req, res) => {
+const getCoursesHandler = async (req, res, next) => {
   try {
     const courses = await courseController.getCourses();
     res.status(200).json(courses);
@@ -60,7 +60,7 @@ const getCoursesHandler = async (req, res) => {
 };
 
 // Obtener un curso por ID
-const getCourseByIdHandler = async (req, res) => {
+const getCourseByIdHandler = async (req, res, next) => {
   try {
     const { id } = req.params;
     const course = await courseController.getCourseById(id);
@@ -76,7 +76,7 @@ const getCourseByIdHandler = async (req, res) => {
 };
 
 // Actualizar un curso
-const updateCourseHandler = async (req, res) => {
+const updateCourseHandler = async (req, res, next) => {
   try {
     const { id } = req.params;
     const updatedData = req.body;
@@ -94,7 +94,7 @@ const updateCourseHandler = async (req, res) => {
 };
 
 // Eliminar un curso
-const deleteCourseHandler = async (req, res) => {
+const deleteCourseHandler = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedCourse = await courseController.deleteCourse(id);

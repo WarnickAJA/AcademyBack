@@ -3,6 +3,12 @@ const userController = require("../controllers/userController");
 const createUserHandler = async (req, res, next) => {
   try {
     const userData = req.body;
+    const email = userData.email;
+    let user = await User.findOne({ email });
+
+    if (user) {
+      return res.status(200).json({ message: "User already exists", user });
+    }
     const newUser = await userController.createUser(userData);
     res.status(201).json(newUser);
   } catch (error) {

@@ -17,6 +17,7 @@ const createCourseHandler = async (req, res, next) => {
       level,
       image,
       video,
+      playlist,
     } = req.body;
 
     // Validación básica (puedes añadir más reglas si es necesario)
@@ -41,6 +42,7 @@ const createCourseHandler = async (req, res, next) => {
       level,
       image,
       video,
+      playlist,
     });
 
     res.status(201).json(newCourse);

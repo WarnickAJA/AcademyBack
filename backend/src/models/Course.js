@@ -45,7 +45,7 @@ const courseSchema = new mongoose.Schema({
 //   modules: [{
 //     name: String,
 //     description: String,
-    lessons: [{
+    playlist: [{
       name: String,
        url: String, // Puedes almacenar diferentes tipos de contenido (texto, video, etc.)
      // Duración en minutos

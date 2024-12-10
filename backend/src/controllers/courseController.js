@@ -8,7 +8,7 @@ const createCourse = async (courseData) => {
 
 // Obtener todos los cursos
 const getCourses = async () => {
-  Courses.updateMany(
+  Course.updateMany(
     {},
     {
       $set: {

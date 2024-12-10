@@ -45,11 +45,11 @@ const courseSchema = new mongoose.Schema({
 //   modules: [{
 //     name: String,
 //     description: String,
-//     lessons: [{
-//       name: String,
-//       content: String, // Puedes almacenar diferentes tipos de contenido (texto, video, etc.)
-//       duration: Number // Duración en minutos
-//     }]
+    lessons: [{
+      name: String,
+       url: String, // Puedes almacenar diferentes tipos de contenido (texto, video, etc.)
+     // Duración en minutos
+   }]
 //   }],
 //   reviews: [{
 //     user: {

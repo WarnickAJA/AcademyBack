@@ -1,4 +1,4 @@
-const Course = require('../models/Course');
+const Course = require("../models/Course");
 
 // Crear un curso
 const createCourse = async (courseData) => {
@@ -8,13 +8,42 @@ const createCourse = async (courseData) => {
 
 // Obtener todos los cursos
 const getCourses = async () => {
-    return await Course.find()
+  Course.updateMany(
+    {},
+    {
+      $set: {
+        playlist: [
+          {
+            url: "https://www.youtube.com/watch?v=acuU_LRH094",
+            titulo: "Top 3 Cursos de Programación en Español y GRATIS",
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLmIB7uA74VvawrhX2PI8klvIv-OMZsM4y",
+            titulo: "Fundamentos de programación para principiantes desde cero",
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLAWADOpEOsdGBc8tYyW_im4Fg5z1m6eZu",
+            titulo:
+              "Curso de PROGRAMACIÓN DESDE CERO | Crea tus PRIMEROS PROGRAMAS",
+          },
+        ],
+      },
+    }
+  )
+    .then((result) => {
+      console.log("Documentos actualizados con un nuevo campo vacío:", result);
+    })
+    .catch((error) => {
+      console.error("Error al actualizar documentos:", error);
+    });
+
+  return await Course.find();
   //return await Course.find().populate('instructor', 'name email'); // Poblamos instructor
 };
 
 // Obtener un curso por ID
 const getCourseById = async (id) => {
-  return await Course.findById(id)
+  return await Course.findById(id);
   //return await Course.findById(id).populate('instructor', 'name email');
 };
 
@@ -33,5 +62,5 @@ module.exports = {
   getCourses,
   getCourseById,
   updateCourse,
-  deleteCourse
+  deleteCourse,
 };

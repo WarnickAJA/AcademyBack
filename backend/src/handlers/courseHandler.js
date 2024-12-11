@@ -10,6 +10,7 @@ const createCourseHandler = async (req, res, next) => {
       subcategory,
       duration,
       price,
+      likes,
       instructor,
       startDate,
       endDate,
@@ -21,7 +22,7 @@ const createCourseHandler = async (req, res, next) => {
     } = req.body;
 
     // Validación básica (puedes añadir más reglas si es necesario)
-    if (!name || !description || !category || !instructor) {
+    if (!name || !category || !instructor) {
       const error = new Error("Faltan campos obligatorios.");
       res.status(400); // Configura el código de estado
       return next(error); // Pasa el error al middleware
@@ -35,6 +36,7 @@ const createCourseHandler = async (req, res, next) => {
       subcategory,
       duration,
       price,
+      likes,
       instructor,
       startDate,
       endDate,

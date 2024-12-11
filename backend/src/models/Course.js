@@ -24,6 +24,10 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  likes: {
+    type: Number,
+    default: 0,
+  },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Instructor", // Referencia a la colección de instructor

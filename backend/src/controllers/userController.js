@@ -5,7 +5,7 @@ const createUser = async (userData) => {
   let user = await User.findOne({ email });
 
   if (user) {
-    return res.status(200).json({ message: "User already exists", user });
+    return user;
   }
   const newUser = new User(userData);
   return await newUser.save();

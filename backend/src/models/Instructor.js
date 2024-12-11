@@ -1,41 +1,30 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const instructorSchema = new mongoose.Schema({
-  name: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
-    trim: true
   },
   bio: {
     type: String,
     trim: true,
-    default: ''
-  },
-  expertise: {
-    type: [String],
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
+    default: "",
   },
   profilePicture: {
     type: String,
-    default: ''
+    default: "",
   },
   socialLinks: {
-    linkedin: { type: String, default: '' },
-    website: { type: String, default: '' }
+    linkedin: { type: String, default: "" },
+    website: { type: String, default: "" },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date
-  }
+  courses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course", // Agrega esta referencia
+    },
+  ],
 });
 
-module.exports = mongoose.model('Instructor', instructorSchema);
+module.exports = mongoose.model("Instructor", instructorSchema);

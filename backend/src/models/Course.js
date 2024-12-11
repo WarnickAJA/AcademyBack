@@ -26,7 +26,7 @@ const courseSchema = new mongoose.Schema({
   },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Referencia a la colección de usuarios
+    ref: "Instructor", // Referencia a la colección de instructor
   },
   startDate: Date,
   endDate: Date,

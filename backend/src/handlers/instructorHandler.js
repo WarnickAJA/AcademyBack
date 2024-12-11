@@ -1,23 +1,21 @@
-const instructorController = require('../controllers/instructorController');
+const instructorController = require("../controllers/instructorController");
 
 // Crear un instructor
 const createInstructorHandler = async (req, res, next) => {
   try {
-    const { name, bio, expertise, email, profilePicture, socialLinks } = req.body;
+    const { userID, bio, profilePicture, socialLinks } = req.body;
 
-    if (!name || !email || !expertise) {
-      const error = new Error('Faltan campos obligatorios.');
+    if (!userID) {
+      const error = new Error("Faltan campos obligatorios.");
       res.status(400);
       return next(error);
     }
 
     const newInstructor = await instructorController.createInstructor({
-      name,
+      userID,
       bio,
-      expertise,
-      email,
       profilePicture,
-      socialLinks
+      socialLinks,
     });
 
     res.status(201).json(newInstructor);
@@ -43,7 +41,7 @@ const getInstructorByIdHandler = async (req, res, next) => {
     const instructor = await instructorController.getInstructorById(id);
 
     if (!instructor) {
-      res.status(404).json({ error: 'Instructor no encontrado.' });
+      res.status(404).json({ error: "Instructor no encontrado." });
       return;
     }
 
@@ -59,10 +57,13 @@ const updateInstructorHandler = async (req, res, next) => {
     const { id } = req.params;
     const updatedData = req.body;
 
-    const updatedInstructor = await instructorController.updateInstructor(id, updatedData);
+    const updatedInstructor = await instructorController.updateInstructor(
+      id,
+      updatedData
+    );
 
     if (!updatedInstructor) {
-      res.status(404).json({ error: 'Instructor no encontrado.' });
+      res.status(404).json({ error: "Instructor no encontrado." });
       return;
     }
 
@@ -80,11 +81,32 @@ const deleteInstructorHandler = async (req, res, next) => {
     const deletedInstructor = await instructorController.deleteInstructor(id);
 
     if (!deletedInstructor) {
-      res.status(404).json({ error: 'Instructor no encontrado.' });
+      res.status(404).json({ error: "Instructor no encontrado." });
       return;
     }
 
-    res.status(200).json({ message: 'Instructor eliminado correctamente.' });
+    res.status(200).json({ message: "Instructor eliminado correctamente." });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const addCourseToInstructorHandler = async (req, res, next) => {
+  try {
+    const { instructorId, courseId } = req.body; // Espera que estos valores vengan en el cuerpo de la solicitud
+
+    if (!instructorId || !courseId) {
+      const error = new Error("Faltan campos obligatorios.");
+      res.status(400);
+      return next(error);
+    }
+
+    const updatedInstructor = await instructorController.addCourseToInstructor(
+      instructorId,
+      courseId
+    );
+
+    res.status(200).json(updatedInstructor);
   } catch (error) {
     next(error);
   }
@@ -95,5 +117,6 @@ module.exports = {
   getInstructorsHandler,
   getInstructorByIdHandler,
   updateInstructorHandler,
-  deleteInstructorHandler
+  deleteInstructorHandler,
+  addCourseToInstructorHandler,
 };

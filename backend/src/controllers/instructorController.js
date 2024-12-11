@@ -1,4 +1,4 @@
-const Instructor = require('../models/Instructor');
+const Instructor = require("../models/Instructor");
 
 // Crear un instructor
 const createInstructor = async (instructorData) => {
@@ -26,10 +26,27 @@ const deleteInstructor = async (id) => {
   return await Instructor.findByIdAndDelete(id);
 };
 
+const addCourseToInstructor = async (instructorId, courseId) => {
+  const instructor = await Instructor.findById(instructorId);
+
+  if (!instructor) {
+    throw new Error("Instructor no encontrado.");
+  }
+
+  // Verifica si el curso ya está asociado al instructor
+  if (!instructor.courses.includes(courseId)) {
+    instructor.courses.push(courseId);
+    await instructor.save();
+  }
+
+  return instructor; // Devuelve el instructor actualizado
+};
+
 module.exports = {
   createInstructor,
   getInstructors,
   getInstructorById,
   updateInstructor,
-  deleteInstructor
+  deleteInstructor,
+  addCourseToInstructor,
 };

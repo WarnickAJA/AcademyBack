@@ -1,8 +1,25 @@
 const Instructor = require("../models/Instructor");
+const User = require("../models/User");
 
 // Crear un instructor
 const createInstructor = async (instructorData) => {
-  const newInstructor = new Instructor(instructorData);
+  const { userID, bio, profilePicture, socialLinks } = instructorData;
+
+  // Verificar que el usuario exista
+  const user = await User.findById(userID);
+  if (!user) {
+    throw new Error("El usuario especificado no existe.");
+  }
+
+  // Crear el instructor con los datos proporcionados
+  const newInstructor = new Instructor({
+    user: userID, // Relación con el usuario
+    bio,
+    profilePicture,
+    socialLinks,
+  });
+
+  // Guardar en la base de datos
   return await newInstructor.save();
 };
 

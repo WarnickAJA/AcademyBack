@@ -1,6 +1,12 @@
 const User = require("../models/User");
 
 const createUser = async (userData) => {
+  const email = userData.email;
+  let user = await User.findOne({ email });
+
+  if (user) {
+    return res.status(200).json({ message: "User already exists", user });
+  }
   const newUser = new User(userData);
   return await newUser.save();
 };

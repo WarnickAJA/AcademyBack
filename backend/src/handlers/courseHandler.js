@@ -113,10 +113,88 @@ const deleteCourseHandler = async (req, res, next) => {
   }
 };
 
+const addVideoToPlaylistHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params; // ID del curso
+    const { name, url } = req.body; // Datos del video
+
+    if (!name || !url) {
+      return res
+        .status(400)
+        .json({ error: "El nombre y la URL del video son obligatorios." });
+    }
+
+    const updatedCourse = await courseController.addVideoToPlaylist(id, {
+      name,
+      url,
+    });
+
+    if (!updatedCourse) {
+      return res.status(404).json({ error: "Curso no encontrado." });
+    }
+
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const removeVideoFromPlaylistHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params; // ID del curso
+    const { url } = req.body; // URL del video a eliminar
+
+    if (!url) {
+      return res
+        .status(400)
+        .json({ error: "La URL del video es obligatoria." });
+    }
+
+    const updatedCourse = await courseController.removeVideoFromPlaylist(
+      id,
+      url
+    );
+
+    if (!updatedCourse) {
+      return res.status(404).json({ error: "Curso no encontrado." });
+    }
+
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateLikesHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params; // ID del curso
+    const { likes } = req.body; // El nuevo número de likes desde el cuerpo de la solicitud
+
+    if (likes === undefined) {
+      return res
+        .status(400)
+        .json({ error: "El campo 'likes' es obligatorio." });
+    }
+
+    const updatedCourse = await courseController.updateLikes(id, likes);
+
+    if (!updatedCourse) {
+      return res.status(404).json({ error: "Curso no encontrado." });
+    }
+
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createCourseHandler,
   getCoursesHandler,
   getCourseByIdHandler,
   updateCourseHandler,
   deleteCourseHandler,
+  addVideoToPlaylistHandler,
+  removeVideoFromPlaylistHandler,
+  updateLikesHandler,
 };

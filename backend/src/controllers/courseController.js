@@ -42,10 +42,36 @@ const deleteCourse = async (id) => {
   return await Course.findByIdAndDelete(id);
 };
 
+const addVideoToPlaylist = async (courseId, video) => {
+  return await Course.findByIdAndUpdate(
+    courseId,
+    { $push: { playlist: video } },
+    { new: true }
+  );
+};
+
+const removeVideoFromPlaylist = async (courseId, videoUrl) => {
+  return await Course.findByIdAndUpdate(
+    courseId,
+    { $pull: { playlist: { url: videoUrl } } }, // Usar la URL para identificar el video
+    { new: true }
+  );
+};
+const updateLikes = async (id, newLikes) => {
+  return await Course.findByIdAndUpdate(
+    id,
+    { likes: newLikes }, // Establece los likes al nuevo valor
+    { new: true } // Devuelve el documento actualizado
+  );
+};
+
 module.exports = {
   createCourse,
   getCourses,
   getCourseById,
   updateCourse,
   deleteCourse,
+  addVideoToPlaylist,
+  removeVideoFromPlaylist,
+  updateLikes,
 };

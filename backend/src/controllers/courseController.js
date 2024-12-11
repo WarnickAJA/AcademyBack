@@ -8,33 +8,20 @@ const createCourse = async (courseData) => {
 
 // Obtener todos los cursos
 const getCourses = async () => {
-  // Course.updateMany(
-  //   {},
-  //   {
-  //     $set: {
-  //       playlist: [
-  //         {
-  //           name: "Top 3 Cursos de Programación en Español y GRATIS",
-  //           url: "https://www.youtube.com/watch?v=acuU_LRH094",
-  //         },
-  //         {
-  //           name: "Fundamentos de programación para principiantes desde cero",
-  //           url: "https://www.youtube.com/playlist?list=PLmIB7uA74VvawrhX2PI8klvIv-OMZsM4y",
-  //         },
-  //         {
-  //           name: "Curso de PROGRAMACIÓN DESDE CERO | Crea tus PRIMEROS PROGRAMAS",
-  //           url: "https://www.youtube.com/playlist?list=PLAWADOpEOsdGBc8tYyW_im4Fg5z1m6eZu",
-  //         },
-  //       ],
-  //     },
-  //   }
-  // )
-  //   .then((result) => {
-  //     console.log("Documentos actualizados con un nuevo campo vacío:", result);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error al actualizar documentos:", error);
-  //   });
+  Course.updateMany(
+    {},
+    {
+      $set: {
+        img: "https://yt3.googleusercontent.com/bDisn8rCsbvMyZPmrlVO_C20TdWzagUXjRV71AHfnFsNS5WU6rp1nIQRzF_y7zSWCtSBZehY=s160-c-k-c0x00ffffff-no-rj",
+      },
+    }
+  )
+    .then((result) => {
+      console.log("Documentos actualizados con un nuevo campo vacío:", result);
+    })
+    .catch((error) => {
+      console.error("Error al actualizar documentos:", error);
+    });
   return await Course.find();
   //return await Course.find().populate('instructor', 'name email'); // Poblamos instructor
 };

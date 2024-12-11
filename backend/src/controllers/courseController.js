@@ -8,21 +8,20 @@ const createCourse = async (courseData) => {
 
 // Obtener todos los cursos
 const getCourses = async () => {
-  // Course.updateMany(
-  //   {},
-  //   {
-  //     $set: {
-  //       image:
-  //         "https://yt3.googleusercontent.com/bDisn8rCsbvMyZPmrlVO_C20TdWzagUXjRV71AHfnFsNS5WU6rp1nIQRzF_y7zSWCtSBZehY=s160-c-k-c0x00ffffff-no-rj",
-  //     },
-  //   }
-  // )
-  //   .then((result) => {
-  //     console.log("Documentos actualizados con un nuevo campo vacío:", result);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error al actualizar documentos:", error);
-  //   });
+  Course.updateMany(
+    {},
+    {
+      $set: {
+        likes: 0,
+      },
+    }
+  )
+    .then((result) => {
+      console.log("Documentos actualizados con un nuevo campo vacío:", result);
+    })
+    .catch((error) => {
+      console.error("Error al actualizar documentos:", error);
+    });
   return await Course.find();
   //return await Course.find().populate('instructor', 'name email'); // Poblamos instructor
 };

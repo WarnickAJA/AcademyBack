@@ -8,20 +8,20 @@ const createCourse = async (courseData) => {
 
 // Obtener todos los cursos
 const getCourses = async () => {
-  Course.updateMany(
-    {},
-    {
-      $set: {
-        likes: 0,
-      },
-    }
-  )
-    .then((result) => {
-      console.log("Documentos actualizados con un nuevo campo vacío:", result);
-    })
-    .catch((error) => {
-      console.error("Error al actualizar documentos:", error);
-    });
+  // Course.updateMany(
+  //   {},
+  //   {
+  //     $set: {
+  //       likes: 0,
+  //     },
+  //   }
+  // )
+  //   .then((result) => {
+  //     console.log("Documentos actualizados con un nuevo campo vacío:", result);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error al actualizar documentos:", error);
+  //   });
   return await Course.find();
   //return await Course.find().populate('instructor', 'name email'); // Poblamos instructor
 };

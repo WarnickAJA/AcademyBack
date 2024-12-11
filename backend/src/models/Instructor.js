@@ -6,6 +6,15 @@ const instructorSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
   bio: {
     type: String,
     trim: true,

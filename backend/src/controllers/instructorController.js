@@ -10,10 +10,12 @@ const createInstructor = async (instructorData) => {
   if (!user) {
     throw new Error("El usuario especificado no existe.");
   }
-
+  const { name, email } = user;
   // Crear el instructor con los datos proporcionados
   const newInstructor = new Instructor({
     user: userID, // Relación con el usuario
+    name,
+    email,
     bio,
     profilePicture,
     socialLinks,

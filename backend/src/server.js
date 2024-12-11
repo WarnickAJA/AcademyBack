@@ -9,6 +9,7 @@ const cors = require("cors");
 const courseRoutes = require("./routes/courseRoutes");
 const instructorRoutes = require("./routes/instructorRoutes");
 const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 
 // Conectar a la base de datos
 connectDB();
@@ -30,6 +31,7 @@ app.use(express.json()); // Para el parseo de JSON en las solicitudes
 app.use("/api/courses", courseRoutes);
 app.use("/api/instructors", instructorRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 // Página de inicio por defecto
 app.get("/", (req, res) => {

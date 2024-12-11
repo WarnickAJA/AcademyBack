@@ -5,7 +5,7 @@ const {
   getPostByIdHandler,
   updatePostHandler,
   deletePostHandler,
-} = require("../handlers/postHandlers");
+} = require("../handlers/postHandler");
 
 const router = express.Router();
 

@@ -23,10 +23,12 @@ const userSchema = new mongoose.Schema({
       ref: "Course",
     },
   ],
-  like: {
-    type: Boolean,
-    default: false,
-  },
+  like: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+    },
+  ],
   favourites: [
     {
       type: mongoose.Schema.Types.ObjectId,

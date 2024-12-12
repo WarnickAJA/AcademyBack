@@ -10,6 +10,7 @@ const courseRoutes = require("./routes/courseRoutes");
 const instructorRoutes = require("./routes/instructorRoutes");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
+const paymentsRoutes = require("./routes/paymentsRoutes");
 
 // Conectar a la base de datos
 connectDB();
@@ -32,6 +33,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/instructors", instructorRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/payments", paymentsRoutes);
 
 // Página de inicio por defecto
 app.get("/", (req, res) => {

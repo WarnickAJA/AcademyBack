@@ -5,7 +5,7 @@ const client = new MercadoPagoConfig({
 
 const createPreference = async (req, res, next) => {
   try {
-    const preference = await client.preference.create({
+    const body = {
       items: req.body.map((product) => ({
         title: product.name,
         unit_price: product.price,
@@ -17,8 +17,10 @@ const createPreference = async (req, res, next) => {
         pending: "http://martin-juncos.github.io/pending",
       },
       auto_return: "approved",
-    });
-    res.status(200).json(preference);
+    };
+    const preference = new Preference(client);
+    const result = await preference.create({ body });
+    res.status(200).json({ id: result.id });
   } catch (error) {
     next(error);
   }

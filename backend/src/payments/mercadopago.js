@@ -7,7 +7,7 @@ const createPreference = async (req, res, next) => {
   try {
     const preference = await client.preference.create({
       items: req.body.map((product) => ({
-        title: product.title,
+        title: product.name,
         unit_price: product.price,
         quantity: product.quantity,
       })),

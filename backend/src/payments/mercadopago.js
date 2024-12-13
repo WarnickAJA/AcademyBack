@@ -8,8 +8,8 @@ const createPreference = async (req, res, next) => {
     const body = {
       items: req.body.map((product) => ({
         title: product.name,
-        unit_price: product.price,
-        quantity: product.quantity,
+        unit_price: Number(product.price),
+        quantity: Number(product.quantity),
       })),
       back_urls: {
         success: "http://martin-juncos.github.io/success",

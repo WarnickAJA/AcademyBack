@@ -6,19 +6,11 @@ const client = new MercadoPagoConfig({
 const createPreference = async (req, res, next) => {
   try {
     const body = {
-      //   items: req.body.map((product) => ({
-      //     title: product.name,
-      //     unit_price: Number(product.price),
-      //     quantity: Number(product.quantity),
-      //   })),
-      items: [
-        {
-          title: "req.body.name",
-          unit_price: 250,
-          quantity: 5,
-          currency_id: "ARS",
-        },
-      ],
+      items: req.body.map((product) => ({
+        title: product.name,
+        unit_price: Number(product.price),
+        quantity: Number(product.quantity),
+      })),
       back_urls: {
         success: "http://martin-juncos.github.io/success",
         failure: "http://martin-juncos.github.io/failure",

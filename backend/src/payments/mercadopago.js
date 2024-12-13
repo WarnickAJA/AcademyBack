@@ -16,6 +16,7 @@ const createPreference = async (req, res, next) => {
           title: "req.body.name",
           unit_price: 250,
           quantity: 5,
+          currency_id: "ARS",
         },
       ],
       back_urls: {

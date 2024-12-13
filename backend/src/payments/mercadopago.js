@@ -28,6 +28,7 @@ const createPreference = async (req, res, next) => {
     };
     const preference = new Preference(client);
     const result = await preference.create({ body });
+    console.log(result);
     res.status(200).json({ id: result.id });
   } catch (error) {
     next(error);

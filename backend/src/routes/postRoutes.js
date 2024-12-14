@@ -2,6 +2,7 @@ const express = require("express");
 const {
   createPostHandler,
   getPostsByCourseIdHandler,
+  getPostsByUserIdHandler,
   getPostByIdHandler,
   updatePostHandler,
   deletePostHandler,
@@ -14,6 +15,7 @@ router.post("/", createPostHandler);
 
 // Ruta para obtener todos los posts de un curso específico
 router.get("/course/:courseId", getPostsByCourseIdHandler);
+router.get("/user/:userId", getPostsByUserIdHandler);
 
 // Ruta para obtener un post por ID
 router.get("/:id", getPostByIdHandler);

@@ -10,7 +10,9 @@ const createPost = async (postData) => {
 const getPostsByCourseId = async (courseId) => {
   return await Post.find({ course: courseId }).populate("author", "name"); // Poblamos el autor si lo deseas
 };
-
+const getPostsByUserId = async (userId) => {
+  return await Post.find({ author: userId });
+};
 // Obtener un post por ID
 const getPostById = async (id) => {
   return await Post.findById(id).populate("author", "name");

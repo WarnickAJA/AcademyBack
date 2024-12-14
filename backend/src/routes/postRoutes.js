@@ -13,7 +13,7 @@ const router = express.Router();
 
 // Ruta para crear un nuevo post
 router.post("/", createPostHandler);
-rputer.get("/", getPostsHandler);
+router.get("/", getPostsHandler);
 
 // Ruta para obtener todos los posts de un curso específico
 router.get("/course/:courseId", getPostsByCourseIdHandler);

@@ -6,6 +6,10 @@ const createPost = async (postData) => {
   return await newPost.save();
 };
 
+const getPosts = async () => {
+  return await Post.find().populate("author", "name"); // Poblamos el autor si lo deseas
+};
+
 // Obtener todos los posts de un curso específico
 const getPostsByCourseId = async (courseId) => {
   return await Post.find({ course: courseId }).populate("author", "name"); // Poblamos el autor si lo deseas

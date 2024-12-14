@@ -19,6 +19,14 @@ const createPostHandler = async (req, res, next) => {
     next(error);
   }
 };
+const getPostsHandler = async (req, res, next) => {
+  try {
+    const posts = await postController.getPosts();
+    res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // Obtener todos los posts de un curso
 const getPostsByCourseIdHandler = async (req, res, next) => {
@@ -93,6 +101,7 @@ const deletePostHandler = async (req, res, next) => {
 
 module.exports = {
   createPostHandler,
+  getPostsHandler,
   getPostsByCourseIdHandler,
   getPostsByUserIdHandler,
   getPostByIdHandler,

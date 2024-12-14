@@ -34,6 +34,7 @@ const deletePost = async (id) => {
 
 module.exports = {
   createPost,
+  getPosts,
   getPostsByCourseId,
   getPostsByUserId,
   getPostById,

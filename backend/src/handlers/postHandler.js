@@ -34,7 +34,7 @@ const getPostsByCourseIdHandler = async (req, res, next) => {
 const getPostsByUserIdHandler = async (req, res, next) => {
   try {
     const { userId } = req.params;
-    const posts = await postController.getPostsByCourseId(userId);
+    const posts = await postController.getPostsByUserId(userId);
     res.status(200).json(posts);
   } catch (error) {
     next(error);

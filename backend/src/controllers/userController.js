@@ -29,10 +29,12 @@ const deleteUser = async (id) => {
   return await User.findByIdAndDelete(id);
 };
 
-const addToArrayField = async (id, field, value) => {
-  const update = { $push: { [field]: value } };
-  return await User.findByIdAndUpdate(id, update, { new: true }).populate(
-    "myCourses favourites"
+const addToArrayField = async (userId, field, values) => {
+  // Usa $addToSet para evitar duplicados al añadir valores al array
+  return User.findByIdAndUpdate(
+    userId,
+    { $addToSet: { [field]: { $each: values } } },
+    { new: true }
   );
 };
 

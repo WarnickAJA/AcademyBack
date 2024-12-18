@@ -69,10 +69,12 @@ const addToArrayFieldHandler = async (req, res, next) => {
       return res.status(400).json({ error: "Invalid field" });
     }
 
+    const valuesToAdd = Array.isArray(value) ? value : [value];
+
     const updatedUser = await userController.addToArrayField(
       userId,
       field,
-      value
+      valuesToAdd
     );
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
